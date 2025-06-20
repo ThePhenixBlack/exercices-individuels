@@ -1,21 +1,49 @@
+function player1(){
+    let guessNumber = prompt("Choisissez un nombre à deviner entre 0 et 50")
+    return Number(guessNumber)
+}
+
+
+
+
+
 function guessAnumber() {
     let givenNumber = prompt("Saisissez un nombre")
-    return givenNumber
+
+    return Number(givenNumber)
 }
 //console.log(guessAnumber())
 
 
-function didWin(number){
-if(number < 22)
+function didWin(number,targetNumber){
+  
+if(number === targetNumber)
 {
-    alert("Plus grand")
+    return true
 }
-else if(number> 22) {
-    alert("Plus petit")
+else if(number < 0 && number <  50)
+{
+    return('Vous devez choisir un nombre entre 0 et 50')
+}
+{
+    return false
+}
+}
 
-} else 
-{
-    alert("Bravo! Vous avez devinez le nombre !")
+// ✅ Fonction principale qui gère tout le jeu
+function gamePlay() {
+    let numberToGuess = player1()
+    let hasWon = false;
+
+    while (!hasWon) {
+        let userGuess = guessAnumber();        // 🔹 Appel de guessAnumber
+        hasWon = didWin(userGuess,numberToGuess);            // 🔹 Transmission à didWin
+
+        if (hasWon) {
+            alert("Bravo, tu as gagné !");
+        } else {
+            alert("Réessaie va !");
+        }
+    }
 }
-}
-console.log(didWin(guessAnumber()))
+gamePlay() 
